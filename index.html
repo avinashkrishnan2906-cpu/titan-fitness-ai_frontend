@@ -465,23 +465,55 @@
     wrap.scrollTop = wrap.scrollHeight;
   }
 
-  function submitLead() {
+  async function submitLead() {
+
     const name  = document.getElementById('lead-name').value.trim();
     const phone = document.getElementById('lead-phone').value.trim();
+  
     if (!name || !phone) {
+  
       alert('Please enter both name and phone number 💪');
+  
       return;
     }
-    // replace card with confirmation
+  
+    try {
+  
+      const res = await fetch(
+        'https://titan-fitness-ai.vercel.app/save-lead',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            goal: "Free Trial"
+          })
+        }
+      );
+  
+      const data = await res.json();
+  
+      console.log(data);
+  
+    } catch(err) {
+  
+      console.log("LEAD ERROR:", err);
+    }
+  
+    // confirmation UI
     const card = document.querySelector('.lead-card');
+  
     card.innerHTML = `
       <h3>🎉 YOU'RE IN, ${name.toUpperCase()}!</h3>
       <p>Our team will call you at <strong>${phone}</strong> within 30 minutes to confirm your FREE 7-day trial.</p>
       <p style="margin-top:8px;color:#ffd166;font-weight:600;">Get ready to TRANSFORM. 🔥</p>
     `;
+  
     document.getElementById('messages').scrollTop = 9999;
-  }
-
+}
   /* ── quick chips ── */
   function quickSend(el) {
     const text = el.textContent.replace(/^[^\w]+/, '').trim();
