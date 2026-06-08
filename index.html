@@ -265,12 +265,19 @@
     .lead-card p { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
     .lead-inputs { display: flex; flex-direction: column; gap: 10px; }
     .lead-input {
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 14px;
-      color: #fff; font-size: 13px; font-family: 'DM Sans', sans-serif;
-      outline: none; transition: border-color .2s;
+        background: rgba(255,255,255,.06);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 14px;
+        color: #fff;
+        font-size: 13px;
+        font-family: 'DM Sans', sans-serif;
+        outline: none;
+        transition: border-color .2s;
+    }
+    select.lead-input option {
+      background: #16161f;
+      color: #fff;
     }
     .lead-input:focus { border-color: var(--red); }
     .lead-input::placeholder { color: var(--muted); }
