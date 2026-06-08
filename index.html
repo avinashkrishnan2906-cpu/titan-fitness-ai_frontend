@@ -558,59 +558,57 @@
 
   /* ── main send ── */
   async function send() {
-
     const inp = document.getElementById('chat-input');
     const msg = inp.value.trim();
   
     if (!msg) return;
   
+    // 1. Display user message instantly
     addMessage(msg, 'user');
-  
     inp.value = '';
-  
     msgCount++;
   
+    // 2. Show smooth typing indicator
     showTyping();
   
     try {
-  
       const res = await fetch('https://titan-fitness-ai.vercel.app/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          message: msg
-        })
+        body: JSON.stringify({ message: msg })
       });
-  
-      console.log("STATUS:", res.status);
-  
-      const data = await res.json();
-  
-      console.log("DATA:", data);
   
       hideTyping();
   
-      if (data.response) {
-        addMessage(data.response, 'bot');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.response) {
+          addMessage(data.response, 'bot');
+        } else {
+          addMessage("⚠️ High traffic on the line! Let's get you set up directly. Claim your free trial below! 👇", 'bot');
+          showLeadCapture();
+        }
       } else {
-        addMessage("⚠️ No response received from AI", 'bot');
+        // Server handles error, fallback gracefully to lead form
+        addMessage("💪 We are moving fast today! Let's secure your slot right away. Fill out the form below!", 'bot');
+        showLeadCapture();
       }
   
     } catch (err) {
-  
-      console.log("ERROR:", err);
-  
+      console.error("CONN ERROR:", err);
       hideTyping();
-  
-      addMessage("⚠️ Couldn't reach the server.", 'bot');
+      // Network disconnect fallback
+      addMessage("⚠️ Running hot! Let's lock in your slot directly. Fill out your details below:", 'bot');
+      showLeadCapture();
     }
   
+    // 3. Keep standard fallback to pop lead card after 3 interactions if not shown yet
     if (msgCount >= 3 && !leadShown) {
       setTimeout(showLeadCapture, 800);
     }
-}
+  }
 
   /* ── enter key ── */
   document.getElementById('chat-input').addEventListener('keypress', e => {
