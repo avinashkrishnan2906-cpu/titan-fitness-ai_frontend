@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Titan Fitness • AI Coach</title>
+  <p style="color:#ffd166;font-size:10px;">
+🔥   57 Leads Captured This Month
+  </p>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -368,6 +371,10 @@
     <div class="chip" onclick="quickSend(this)">🏅 Classes</div>
     <div class="chip" onclick="quickSend(this)">💪 Personal Training</div>
     <div class="chip" onclick="quickSend(this)">📍 Location</div>
+    <div class="chip" onclick="quickSend(this)">🚗 Parking</div>
+    <div class="chip" onclick="quickSend(this)">🏋️ Amenities</div>
+    <div class="chip" onclick="quickSend(this)">🔥 Weight Loss</div>
+    <div class="chip" onclick="quickSend(this)">💥 Muscle Gain</div>
   </div>
 
   <!-- Messages -->
@@ -456,10 +463,29 @@
       <h3>🎯 CLAIM YOUR FREE TRIAL</h3>
       <p>Drop your details and we'll book your slot within minutes!</p>
       <div class="lead-inputs">
-        <input class="lead-input" id="lead-name" type="text" placeholder="Your Full Name" />
-        <input class="lead-input" id="lead-phone" type="tel"  placeholder="Phone Number" />
-        <button class="lead-btn" onclick="submitLead()">Book My Free Trial →</button>
-      </div>
+        <input class="lead-input"
+               id="lead-name"
+               type="text"
+               placeholder="Your Full Name" />
+      
+        <input class="lead-input"
+               id="lead-phone"
+               type="tel"
+               placeholder="Phone Number" />
+      
+        <select class="lead-input" id="lead-goal">
+            <option value="">Select Fitness Goal</option>
+            <option value="Weight Loss">Weight Loss</option>
+            <option value="Muscle Gain">Muscle Gain</option>
+            <option value="General Fitness">General Fitness</option>
+            <option value="Personal Training">Personal Training</option>
+        </select>
+      
+        <button class="lead-btn"
+                onclick="submitLead()">
+            Book My Free Trial →
+        </button>
+    </div>
     `;
     wrap.appendChild(card);
     wrap.scrollTop = wrap.scrollHeight;
@@ -467,10 +493,11 @@
 
   async function submitLead() {
 
-    const name  = document.getElementById('lead-name').value.trim();
+    const name = document.getElementById('lead-name').value.trim();
     const phone = document.getElementById('lead-phone').value.trim();
+    const goal = document.getElementById('lead-goal').value;
   
-    if (!name || !phone) {
+    if (!name || !phone || !goal) {
   
       alert('Please enter both name and phone number 💪');
   
@@ -489,7 +516,7 @@
           body: JSON.stringify({
             name: name,
             phone: phone,
-            goal: "Free Trial"
+            goal: goal
           })
         }
       );
@@ -508,7 +535,8 @@
   
     card.innerHTML = `
       <h3>🎉 YOU'RE IN, ${name.toUpperCase()}!</h3>
-      <p>Our team will call you at <strong>${phone}</strong> within 30 minutes to confirm your FREE 7-day trial.</p>
+      <p>Your goal: <strong>${goal}</strong></p>
+      <p>Our team will call you at <strong>${phone}</strong> within 30 minutes.</p>
       <p style="margin-top:8px;color:#ffd166;font-weight:600;">Get ready to TRANSFORM. 🔥</p>
     `;
   
@@ -586,9 +614,10 @@
   window.onload = () => {
     setTimeout(() => {
       addMessage(
-        "Hey there, future Titan! 👋💪<br>" +
+        "🔥 Welcome to Titan Fitness! 👋💪<br>" +
         "I'm your personal fitness concierge.<br>" +
-        "Ask me anything — <strong>pricing, free trial, classes, timings</strong> — I've got you covered!",
+        "Ask me anything — <strong>pricing, free trial, classes, timings</strong> — I've got you covered!"+
+        "<br><br>🎯 Ask about pricing, classes, personal training or claim your FREE trial today!",
         'bot'
       );
     }, 300);
