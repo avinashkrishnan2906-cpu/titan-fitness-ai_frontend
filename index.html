@@ -357,46 +357,34 @@
   async function send() {
     const inp = document.getElementById('chat-input');
     const msg = inp.value.trim();
+    
     if (!msg) return;
-  
+    
     addMessage(msg, 'user');
     inp.value = '';
     msgCount++;
     showTyping();
   
-    try {
-      const res = await fetch('https://titan-fitness-ai.vercel.app/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg })
-      });
-  
+    // ── MOCK RECORDING FLOW BYPASS ──
+    setTimeout(() => {
       hideTyping();
-  
-      if (res.ok) {
-        const data = await res.json();
-        if (data.response) {
-          addMessage(data.response, 'bot');
-        } else {
-          addMessage("🐍 Desk traffic is heavy! Let's lock your entry pass directly. Fill out your track details below:", 'bot');
-          showLeadCapture();
-        }
-      } else {
-        addMessage("💪 Training floor is running fast today! Let's lock your slot immediately. Register your spot below:", 'bot');
+      
+      if (msg.toLowerCase().includes('package') || msg.toLowerCase().includes('fee') || msg.toLowerCase().includes('much')) {
+        addMessage("We have hardcore transformation packages at 369 Beast Fitness Factory to break your limits. Our intense monthly packs start at just ₹2,999—should I drop the full quarterly and annual breakdown for you? 💪", 'bot');
+      } 
+      else if (msg.toLowerCase().includes('trial') || msg.toLowerCase().includes('pass')) {
+        addMessage("Hell yeah! We want you to experience the insane energy at 369 Beast Fitness Factory. We offer an exclusive 3-day free pass for local residents. You can lock in your slot right here below! 🎯", 'bot');
+      }
+      else if (msg.toLowerCase().includes('trainer') || msg.toLowerCase().includes('weight')) {
+        addMessage("Yes! We have elite, certified transformation coaches at 369 Beast Fitness Factory specializing in rapid fat loss, mass building, and contest prep. Let's lock in your tracking parameters here:", 'bot');
+        showLeadCapture(); // Automatically drops the custom green card
+      }
+      else {
+        addMessage("Let's get you set up on the floor right away! Claim your free trial below! 👇", 'bot');
         showLeadCapture();
       }
-    } catch (err) {
-      console.error("CONNECTION ERROR:", err);
-      hideTyping();
-      addMessage("⚠️ Console connection running hot! Secure your entry slot directly by registering your details here:", 'bot');
-      showLeadCapture();
-    }
-  
-    if (msgCount >= 3 && !leadShown) {
-      setTimeout(showLeadCapture, 800);
-    }
-  }
-
+    }, 1000); // Perfect 1-second dynamic lag look for your video
+}
   document.getElementById('chat-input').addEventListener('keypress', e => { if (e.key === 'Enter') send(); });
 
   window.onload = () => {
