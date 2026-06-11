@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>369 Beast Fitness Factory • AI Concierge</title>
+  <title>We Fitness Center • AI Digital Desk</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,17 +14,23 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --red:    #ff0022; /* Vibrant Crimson Red from Logo text */
-      --orange: #00ff66; /* Electric Viper Green from Snake Asset */
-      --gold:   #ffffff; /* Stark White Contrast */
-      --bg0:    #050508; /* Volcanic Matte Dark */
-      --bg1:    #0c0c12; /* Charcoal Depth Base */
-      --bg2:    #12121c; /* Structural Cards Layout */
-      --glass:  rgba(255, 255, 255, 0.03);
-      --border: rgba(0, 255, 102, 0.12); /* Viper Green Tint border */
-      --text:   #f5f5fa;
-      --muted:  #828299;
-      --grad:   linear-gradient(135deg, var(--red), #b3001b); /* Aggressive Red Flow */
+      /* COLORS EXTRACTED FROM THE LOGO */
+      --red:    #e31e24; /* 🔴 Striking Crimson Red from the logo elements */
+      --orange: #ffffff; /* ⚪ Stark Chrome White for high visibility highlights */
+      --gold:   #ff3344; /* 🎯 Bright neon-red tint for interactive glows */
+      
+      /* DARK BACKGROUNDS: Heavy industrial charcoal to make the red pop */
+      --bg0:    #060608; 
+      --bg1:    #0d0d12; 
+      --bg2:    #14141c; 
+      
+      --glass:  rgba(255, 255, 255, 0.02);
+      --border: rgba(227, 30, 36, 0.15); /* Subtle Crimson border glow */
+      --text:   #f3f4f6;
+      --muted:  #9ca3af;
+      
+      /* GRADIENT: Aggressive Crimson Red to deep volcanic shadow */
+      --grad:   linear-gradient(135deg, var(--red), #800f12); 
     }
 
     html, body { height: 100%; overflow: hidden; }
@@ -44,8 +50,8 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(255, 0, 34, 0.15) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(0, 255, 102, 0.12) 0%, transparent 70%);
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(227, 30, 36, 0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
       animation: breathe 8s ease-in-out infinite alternate;
     }
     @keyframes breathe {
@@ -66,7 +72,7 @@
       width: min(480px, 100vw);
       height: 100vh;
       display: flex; flex-direction: column;
-      background: rgba(5, 5, 8, 0.95);
+      background: rgba(6, 6, 8, 0.96);
       border-left: 1px solid var(--border);
       border-right: 1px solid var(--border);
     }
@@ -74,47 +80,47 @@
     /* ── HEADER DESIGN ── */
     .header {
       padding: 18px 22px 14px;
-      background: rgba(5, 5, 8, 0.9);
+      background: rgba(6, 6, 8, 0.9);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center; gap: 14px;
       flex-shrink: 0;
     }
     .logo-ring {
-      width: 46px; height: 46px; border-radius: 14px;
-      background: var(--bg1);
-      border: 1px solid var(--orange);
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--bg2);
+      border: 2px solid var(--red);
       display: flex; align-items: center; justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 0 15px rgba(0, 255, 102, 0.25);
+      font-size: 20px;
+      box-shadow: 0 0 12px rgba(227, 30, 36, 0.3);
       animation: pulse-ring 3s ease-in-out infinite;
       flex-shrink: 0;
     }
     @keyframes pulse-ring {
-      0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 102, 0.25); }
-      50% { box-shadow: 0 0 25px rgba(255, 0, 34, 0.4); border-color: var(--red); }
+      0%, 100% { box-shadow: 0 0 12px rgba(227, 30, 36, 0.3); border-color: var(--red); }
+      50% { box-shadow: 0 0 22px rgba(255, 51, 68, 0.45); border-color: var(--gold); }
     }
     .header-text { flex: 1; }
     .header-text h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 23px; letter-spacing: 1.5px;
-      background: linear-gradient(90deg, #fff, #999);
+      font-size: 24px; letter-spacing: 1.5px;
+      background: linear-gradient(90deg, #ffffff, #a3a3a3);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .header-text p { font-size: 11px; color: var(--orange); font-weight: 500; margin-top: 1px; letter-spacing: 0.5px; }
+    .header-text p { font-size: 11px; color: var(--red); font-weight: 600; margin-top: 1px; letter-spacing: 0.5px; }
     .status-dot {
       width: 8px; height: 8px; border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 8px var(--orange);
+      background: var(--red);
+      box-shadow: 0 0 8px var(--red);
       animation: blink 2s ease-in-out infinite;
     }
     @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
 
     /* ── MARQUEE ── */
     .promo-banner {
-      background: linear-gradient(90deg, rgba(255,0,34,0.1), rgba(0,255,102,0.05));
+      background: linear-gradient(90deg, rgba(227,30,36,0.12), rgba(0,0,0,0.4));
       border-bottom: 1px solid var(--border);
-      padding: 8px 18px; font-size: 11px; font-weight: 600; color: var(--orange);
+      padding: 8px 18px; font-size: 11px; font-weight: 600; color: #ffffff;
       display: flex; align-items: center; gap: 8px; overflow: hidden; flex-shrink: 0;
     }
     .promo-banner span.tag {
@@ -133,7 +139,7 @@
       border: 1px solid var(--border); background: var(--glass);
       font-size: 12px; color: var(--muted); cursor: pointer; transition: all .2s; backdrop-filter: blur(8px);
     }
-    .chip:hover { border-color: var(--orange); color: #fff; background: rgba(0,255,102,0.05); }
+    .chip:hover { border-color: var(--red); color: #fff; background: rgba(227,30,36,0.08); }
 
     /* ── TALK DISPLAY SECTION ── */
     #messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; }
@@ -141,59 +147,61 @@
     .msg-row { display: flex; gap: 8px; align-items: flex-end; animation: fadeUp .3s ease both; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .msg-row.user { flex-direction: row-reverse; }
-    .avatar { width: 30px; height: 30px; border-radius: 10px; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    
+    .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 13px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
     .msg-row.user .avatar { background: var(--bg2); border: 1px solid var(--border); }
+    
     .bubble { max-width: 80%; padding: 11px 15px; border-radius: 16px; font-size: 13.5px; line-height: 1.5; }
     .bot .bubble { background: var(--bg2); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
-    .user .bubble { background: var(--grad); border-bottom-right-radius: 4px; box-shadow: 0 4px 15px rgba(255,0,34,0.25); }
+    .user .bubble { background: var(--grad); border-bottom-right-radius: 4px; box-shadow: 0 4px 15px rgba(227,30,36,0.2); }
 
     /* ── SYSTEM TYPING FEEDBACK ── */
     .typing-row { display: flex; gap: 8px; align-items: flex-end; padding: 4px; }
     .typing-bubble { background: var(--bg2); border: 1px solid var(--border); padding: 12px 16px; border-radius: 16px; border-bottom-left-radius: 4px; display: flex; gap: 5px; align-items: center; }
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: bounce 1.2s ease-in-out infinite; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: bounce 1.2s ease-in-out infinite; }
     .dot:nth-child(2) { animation-delay: .2s; }
     .dot:nth-child(3) { animation-delay: .4s; }
     @keyframes bounce { 0%,80%,100% { transform: translateY(0); opacity: .4; } 40% { transform: translateY(-5px); opacity: 1; } }
 
-    /* ── EXTRACTION INTERFACE FORM CARD ── */
+    /* ── DATA CAPTURE FORM CARD ── */
     .lead-card {
-      background: linear-gradient(135deg, rgba(255,0,34,0.08), rgba(0,255,102,0.04));
-      border: 1px solid rgba(0, 255, 102, 0.25); border-radius: 16px; padding: 18px; animation: fadeUp .4s ease both;
+      background: linear-gradient(135deg, rgba(227,30,36,0.1), rgba(0,0,0,0.5));
+      border: 1px solid rgba(227, 30, 36, 0.35); border-radius: 16px; padding: 18px; animation: fadeUp .4s ease both;
     }
-    .lead-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 1px; color: var(--orange); margin-bottom: 4px; }
+    .lead-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px; color: #ffffff; margin-bottom: 4px; }
     .lead-card p { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
     .lead-inputs { display: flex; flex-direction: column; gap: 10px; }
     .lead-input {
-      background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 10px;
+      background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 10px;
       padding: 11px 14px; color: #fff; font-size: 13px; font-family: 'DM Sans', sans-serif; outline: none; transition: all .2s;
     }
     select.lead-input option { background: #0c0c12; color: #fff; }
-    .lead-input:focus { border-color: var(--orange); box-shadow: 0 0 8px rgba(0,255,102,0.15); }
+    .lead-input:focus { border-color: var(--red); box-shadow: 0 0 8px rgba(227,30,36,0.2); }
     .lead-btn {
       padding: 12px; border-radius: 10px; border: none; background: var(--grad);
       color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif;
-      transition: all .2s; box-shadow: 0 4px 15px rgba(255,0,34,0.3);
+      transition: all .2s; box-shadow: 0 4px 15px rgba(227,30,36,0.3);
     }
-    .lead-btn:hover { opacity: .9; transform: translateY(-1px); }
+    .lead-btn:hover { opacity: .95; transform: translateY(-1px); }
 
     /* ── BASE CONSOLE ── */
-    .input-area { padding: 14px 14px 18px; background: rgba(5,5,8,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--border); flex-shrink: 0; }
+    .input-area { padding: 14px 14px 18px; background: rgba(6,6,8,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--border); flex-shrink: 0; }
     .input-row { display: flex; gap: 10px; align-items: center; }
     #chat-input {
       flex: 1; background: var(--bg2); border: 1px solid var(--border); border-radius: 24px;
       padding: 12px 18px; color: #fff; font-size: 13.5px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .25s;
     }
-    #chat-input:focus { border-color: rgba(0,255,102,0.4); }
+    #chat-input:focus { border-color: rgba(227,30,36,0.4); }
     .send-btn {
       width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0; background: var(--grad);
       border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 15px rgba(255,0,34,0.3); transition: all .15s;
+      box-shadow: 0 0 15px rgba(227,30,36,0.25); transition: all .15s;
     }
-    .send-btn:hover { transform: scale(1.05); box-shadow: 0 0 22px rgba(255,0,34,0.5); }
+    .send-btn:hover { transform: scale(1.05); box-shadow: 0 0 22px rgba(227,30,36,0.45); }
     .send-btn svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     
     .footer-note { text-align: center; font-size: 10px; color: var(--muted); margin-top: 10px; line-height: 1.4; }
-    .footer-note span { color: var(--orange); font-weight: 600; }
+    .footer-note span { color: var(--red); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -202,45 +210,44 @@
 
 <div class="shell">
   <div class="header">
-    <div class="logo-ring">🐍</div>
+    <div class="logo-ring">💪</div>
     <div class="header-text">
-      <h1>369 BEAST FITNESS FACTORY</h1>
-      <p>AI Virtual Concierge • 24/7 Floor Assistant</p>
+      <h1>WE FITNESS CENTER</h1>
+      <p>AI Virtual Front Desk • 24/7 Digital Assistant</p>
     </div>
     <div class="status-dot"></div>
   </div>
 
   <div class="promo-banner">
-    <span class="tag">🐍 VIPER PASS</span>
+    <span class="tag">🔥 FREE PASS</span>
     <div class="promo-scroll">
       <span class="promo-scroll-inner">
-        🔥 ACTIVATE YOUR FREE 3-DAY BEAST PASS • CRUSH YOUR GOALS • UNLEASH THE INSANE ENERGY WITHIN &nbsp;&nbsp;&nbsp;&nbsp;
-        🔥 ACTIVATE YOUR FREE 3-DAY BEAST PASS • CRUSH YOUR GOALS • UNLEASH THE INSANE ENERGY WITHIN &nbsp;&nbsp;&nbsp;&nbsp;
+        ⚡ ACTIVATE YOUR FREE WE FITNESS TRIAL PASS • CRUSH YOUR GOALS • HEAVY IRON ONLY &nbsp;&nbsp;&nbsp;&nbsp;
+        ⚡ ACTIVATE YOUR FREE WE FITNESS TRIAL PASS • CRUSH YOUR GOALS • HEAVY IRON ONLY &nbsp;&nbsp;&nbsp;&nbsp;
       </span>
     </div>
   </div>
 
   <div class="chips-bar" id="chips">
     <div class="chip" onclick="quickSend(this)">💰 Membership Fees</div>
-    <div class="chip" onclick="quickSend(this)">🎯 Free 3-Day Pass</div>
+    <div class="chip" onclick="quickSend(this)">🎯 Free Trial Pass</div>
     <div class="chip" onclick="quickSend(this)">⏰ Gym Timings</div>
     <div class="chip" onclick="quickSend(this)">💪 Personal Training</div>
     <div class="chip" onclick="quickSend(this)">📍 Location</div>
-    <div class="chip" onclick="quickSend(this)">🚗 Parking</div>
-    <div class="chip" onclick="quickSend(this)">🏅 Training Programs</div>
+    <div class="chip" onclick="quickSend(this)">🚗 Parking Slots</div>
   </div>
 
   <div id="messages"></div>
 
   <div class="input-area">
     <div class="input-row">
-      <input type="text" id="chat-input" placeholder="Ask about membership, timings, packages..." autocomplete="off" />
+      <input type="text" id="chat-input" placeholder="Ask about memberships, timings, trainers..." autocomplete="off" />
       <button class="send-btn" onclick="send()" aria-label="Send">
         <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </div>
     <div class="footer-note">
-      Engine Configuration Managed by <span>Beast AI Systems</span>
+      Engine Configuration Managed by <span>We Fitness Systems</span>
       <br>
       ⚡ Secure Verification Channel Linked • Instant Execution
     </div>
@@ -252,8 +259,7 @@
   let leadShown = false;
 
   function userAvatar() { const a = document.createElement('div'); a.className = 'avatar'; a.textContent = '🧑'; return a; }
-  // Updated avatar with snake emoji to match brand aesthetics
-  function botAvatar() { const a = document.createElement('div'); a.className = 'avatar'; a.textContent = '🐍'; return a; }
+  function botAvatar() { const a = document.createElement('div'); a.className = 'avatar'; a.textContent = '🏋️‍♂️'; return a; }
 
   function addMessage(html, type) {
     const wrap = document.getElementById('messages');
@@ -275,7 +281,6 @@
   }
 
   let typingEl = null;
-  if (typingEl) { typingEl.remove(); typingEl = null; }
   function showTyping() {
     const wrap = document.getElementById('messages');
     const row = document.createElement('div');
@@ -298,7 +303,7 @@
     const card = document.createElement('div');
     card.className = 'lead-card';
     card.innerHTML = `
-      <h3>🐍 SECURE YOUR FREE 3-DAY BEAST PASS</h3>
+      <h3>🏋️‍♂️ SECURE YOUR COMPLIMENTARY TRIAL PASS</h3>
       <p>Drop your contact details below. Our training team will confirm your entry slot instantly!</p>
       <div class="lead-inputs">
         <input class="lead-input" id="lead-name" type="text" placeholder="Your Full Name" />
@@ -307,10 +312,10 @@
             <option value="">Choose Transformation Track</option>
             <option value="Weight Loss / Shred">Weight Loss / Shred</option>
             <option value="Muscle Gain / Strength">Muscle Gain / Strength</option>
-            <option value="Hardcore Powerlifting">Hardcore Powerlifting</option>
+            <option value="Bodybuilding Prep">Bodybuilding & Contest Prep</option>
             <option value="Personal Coaching">1-on-1 Personal Training</option>
         </select>
-        <button class="lead-btn" onclick="submitLead()">Claim My Beast Pass Now →</button>
+        <button class="lead-btn" onclick="submitLead()">Claim My Free Pass Now →</button>
       </div>
     `;
     wrap.appendChild(card);
@@ -323,16 +328,16 @@
     const goal = document.getElementById('lead-goal').value;
   
     if (!name || !phone || !goal) {
-      alert('Fill out your details to activate your pass! 💪🐍');
+      alert('Fill out your details to activate your pass! 💪🔥');
       return;
     }
   
     try {
-      // Points exactly to your live Vercel endpoint proxy channel
-      await fetch('https://titan-fitness-ai.vercel.app/save-lead', {
+      // Points exactly to your live Vercel endpoint proxy channel or local endpoint
+      await fetch('https://we-fitness-ai.vercel.app/save-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, phone: phone, goal: goal, source: "369_beast_factory" })
+        body: JSON.stringify({ name: name, phone: phone, goal: goal, source: "we_fitness_center" })
       });
     } catch(err) {
       console.error("LEAD SAVE RUN FAIL:", err);
@@ -343,7 +348,7 @@
       <h3>🎉 PASS ACTIVATED, ${name.toUpperCase()}!</h3>
       <p>Selected Track: <strong>${goal}</strong></p>
       <p>Our training floor desk will call you at <strong>${phone}</strong> within 30 minutes to confirm your slot.</p>
-      <p style="margin-top:10px; color:var(--orange); font-weight:600; letter-spacing:0.5px;">UNLEASH THE BEAST WITHIN. 🔥👊</p>
+      <p style="margin-top:10px; color:var(--red); font-weight:600; letter-spacing:0.5px;">WELCOME TO THE IRON ZONE. 🔥👊</p>
     `;
     document.getElementById('messages').scrollTop = 9999;
   }
@@ -370,29 +375,30 @@
       hideTyping();
       
       if (msg.toLowerCase().includes('package') || msg.toLowerCase().includes('fee') || msg.toLowerCase().includes('much')) {
-        addMessage("We have hardcore transformation packages at 369 Beast Fitness Factory to break your limits. Our intense monthly packs start at just ₹2,999—should I drop the full quarterly and annual breakdown for you? 💪", 'bot');
+        addMessage("We have elite strength and conditioning packages at We Fitness Center. Our heavy iron monthly memberships start at just ₹2,499—should I drop our complete quarterly and annual transformation packages for you? 🏋️‍♂️", 'bot');
       } 
       else if (msg.toLowerCase().includes('trial') || msg.toLowerCase().includes('pass')) {
-        addMessage("Hell yeah! We want you to experience the insane energy at 369 Beast Fitness Factory. We offer an exclusive 3-day free pass for local residents. You can lock in your slot right here below! 🎯", 'bot');
+        addMessage("Let's get it! Experience the raw training energy at We Fitness Center. We offer an exclusive 1-day free trial pass for serious local lifters. You can lock in your session right here below! 🎯", 'bot');
       }
-      else if (msg.toLowerCase().includes('trainer') || msg.toLowerCase().includes('weight')) {
-        addMessage("Yes! We have elite, certified transformation coaches at 369 Beast Fitness Factory specializing in rapid fat loss, mass building, and contest prep. Let's lock in your tracking parameters here:", 'bot');
-        showLeadCapture(); // Automatically drops the custom green card
+      else if (msg.toLowerCase().includes('trainer') || msg.toLowerCase().includes('weight') || msg.toLowerCase().includes('coaching')) {
+        addMessage("Yes! We have elite, certified transformation coaches at We Fitness Center specializing in rapid fat loss, contest prep, and hyper-growth muscle building. Let's lock in your tracking parameters here:", 'bot');
+        showLeadCapture(); // Automatically drops the custom data card
       }
       else {
         addMessage("Let's get you set up on the floor right away! Claim your free trial below! 👇", 'bot');
         showLeadCapture();
       }
-    }, 1000); // Perfect 1-second dynamic lag look for your video
-}
+    }, 1000); 
+  }
+  
   document.getElementById('chat-input').addEventListener('keypress', e => { if (e.key === 'Enter') send(); });
 
   window.onload = () => {
     setTimeout(() => {
       addMessage(
-        "🔥 Welcome to 369 Beast Fitness Factory! 👋🐍<br>" +
-        "Ready to break your limits? I am your 24/7 digital training desk assistant.<br><br>" +
-        "Ask me anything about our <strong>membership fees, trainer rosters, timings</strong>, or activate your <strong>FREE 3-DAY BEAST TRIAL PASS</strong> instantly below! 👇",
+        "🔥 Welcome to We Fitness Center! 👋💪<br>" +
+        "Ready to build elite strength? I am your 24/7 digital front desk assistant.<br><br>" +
+        "Ask me anything about our <strong>membership structures, personal training, timings</strong>, or claim your <strong>FREE TRIAL PASS</strong> right here! 👇",
         'bot'
       );
     }, 300);
