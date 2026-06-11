@@ -334,7 +334,7 @@
   
     try {
       // Points exactly to your live Vercel endpoint proxy channel or local endpoint
-      await fetch('https://we-fitness-ai.vercel.app/save-lead', {
+      await fetch('https://titan-fitness-ai-frontend.vercel.app/save-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: name, phone: phone, goal: goal, source: "we_fitness_center" })
