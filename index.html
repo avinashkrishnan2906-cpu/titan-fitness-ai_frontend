@@ -359,7 +359,7 @@
     send();
   }
 
-  async function send() {
+ async function send() {
     const inp = document.getElementById('chat-input');
     const msg = inp.value.trim();
     
@@ -370,22 +370,51 @@
     msgCount++;
     showTyping();
   
-    // ── MOCK RECORDING FLOW BYPASS ──
+    // ── EXPANDED MOCK RECORDING FLOW BYPASS ──
     setTimeout(() => {
       hideTyping();
+      const lowerMsg = msg.toLowerCase();
       
-      if (msg.toLowerCase().includes('package') || msg.toLowerCase().includes('fee') || msg.toLowerCase().includes('much')) {
+      // 1. CHANNELS FOR PRICING / FEES / RATES
+      if (
+        lowerMsg.includes('package') || 
+        lowerMsg.includes('fee') || 
+        lowerMsg.includes('much') || 
+        lowerMsg.includes('rate') || 
+        lowerMsg.includes('price') || 
+        lowerMsg.includes('cost') ||
+        lowerMsg.includes('membership')
+      ) {
         addMessage("We have elite strength and conditioning packages at We Fitness Center. Our heavy iron monthly memberships start at just ₹2,499—should I drop our complete quarterly and annual transformation packages for you? 🏋️‍♂️", 'bot');
       } 
-      else if (msg.toLowerCase().includes('trial') || msg.toLowerCase().includes('pass')) {
+      
+      // 2. CHANNELS FOR TRIALS / PASSES
+      else if (
+        lowerMsg.includes('trial') || 
+        lowerMsg.includes('pass') || 
+        lowerMsg.includes('free') || 
+        lowerMsg.includes('check out')
+      ) {
         addMessage("Let's get it! Experience the raw training energy at We Fitness Center. We offer an exclusive 1-day free trial pass for serious local lifters. You can lock in your session right here below! 🎯", 'bot');
       }
-      else if (msg.toLowerCase().includes('trainer') || msg.toLowerCase().includes('weight') || msg.toLowerCase().includes('coaching')) {
+      
+      // 3. CHANNELS FOR COACHING / WEIGHT LOSS / MUSCLE GAIN
+      else if (
+        lowerMsg.includes('trainer') || 
+        lowerMsg.includes('weight') || 
+        lowerMsg.includes('coaching') || 
+        lowerMsg.includes('personal') || 
+        lowerMsg.includes('reduce') || 
+        lowerMsg.includes('fat') || 
+        lowerMsg.includes('gain')
+      ) {
         addMessage("Yes! We have elite, certified transformation coaches at We Fitness Center specializing in rapid fat loss, contest prep, and hyper-growth muscle building. Let's lock in your tracking parameters here:", 'bot');
         showLeadCapture(); // Automatically drops the custom data card
       }
+      
+      // 4. FALLBACK FOR GENERAL ENGAGEMENT
       else {
-        addMessage("Let's get you set up on the floor right away! Claim your free trial below! 👇", 'bot');
+        addMessage("Welcome to the floor! Let's get your details locked into our system so we can answer any specific scheduling or operational queries right away. Use the secure card below: 👇", 'bot');
         showLeadCapture();
       }
     }, 1000); 
