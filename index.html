@@ -323,40 +323,41 @@
   }
 
   async function submitLead() {
-    const name = document.getElementById('lead-name').value.trim();
-    const phone = document.getElementById('lead-phone').value.trim();
-    const goal = document.getElementById('lead-goal').value;
-  
-    if (!name || !phone || !goal) {
-      alert('Fill out your details to activate your pass! 💪🔥');
-      return;
-    }
-  
-    try {
-      // Direct connection path to your backend routing configuration
-      await fetch('https://titan-fitness-ai.vercel.app/save-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          name: name, 
-          phone: phone, 
-          goal: goal, 
-          source: "we_fitness_center"
-        })
-      });
-    } catch(err) {
-      console.error("LEAD SAVE RUN FAIL:", err);
-    }
-  
-    const card = document.querySelector('.lead-card');
-    card.innerHTML = `
-      <h3>🎉 PASS ACTIVATED, ${name.toUpperCase()}!</h3>
-      <p>Selected Track: <strong>${goal}</strong></p>
-      <p>Our training floor desk will call you at <strong>${phone}</strong> within 30 minutes to confirm your slot.</p>
-      <p style="margin-top:10px; color:var(--red); font-weight:600; letter-spacing:0.5px;">WELCOME TO THE IRON ZONE. 🔥👊</p>
-    `;
-    document.getElementById('messages').scrollTop = 9999;
+  const name = document.getElementById('lead-name').value.trim();
+  const phone = document.getElementById('lead-phone').value.trim();
+  const goal = document.getElementById('lead-goal').value;
+
+  if (!name || !phone || !goal) {
+    alert('Fill out your details to activate your pass! 💪🔥');
+    return;
   }
+
+  try {
+    // Direct connection path to your backend routing configuration
+    await fetch('https://titan-fitness-ai.vercel.app/save-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        name: name, 
+        phone: phone, 
+        goal: goal, 
+        source: "we_fitness_center",
+        target_sheet: "We Fitness Club Data" // 🎯 DYNAMIC KEY: Tells the backend exactly which sheet to open!
+      })
+    });
+  } catch(err) {
+    console.error("LEAD SAVE RUN FAIL:", err);
+  }
+
+  const card = document.querySelector('.lead-card');
+  card.innerHTML = `
+    <h3>🎉 PASS ACTIVATED, ${name.toUpperCase()}!</h3>
+    <p>Selected Track: <strong>${goal}</strong></p>
+    <p>Our training floor desk will call you at <strong>${phone}</strong> within 30 minutes to confirm your slot.</p>
+    <p style="margin-top:10px; color:var(--red); font-weight:600; letter-spacing:0.5px;">WELCOME TO THE IRON ZONE. 🔥👊</p>
+  `;
+  document.getElementById('messages').scrollTop = 9999;
+}
 
   function quickSend(el) {
     const text = el.textContent.replace(/^[^\w]+/, '').trim();
