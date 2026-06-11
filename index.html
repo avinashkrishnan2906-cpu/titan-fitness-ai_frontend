@@ -398,7 +398,18 @@
         addMessage("Let's get it! Experience the raw training energy at We Fitness Center. We offer an exclusive 1-day free trial pass for serious local lifters. You can lock in your session right here below! 🎯", 'bot');
       }
       
-      // 3. CHANNELS FOR COACHING / WEIGHT LOSS / MUSCLE GAIN
+      // 3. ADDED: CHANNELS FOR GYM TIMINGS / HOURS / OPENING
+      else if (
+        lowerMsg.includes('timing') || 
+        lowerMsg.includes('hours') || 
+        lowerMsg.includes('open') || 
+        lowerMsg.includes('close') || 
+        lowerMsg.includes('time')
+      ) {
+        addMessage("No excuses! The training floor at We Fitness Center is alive for early grinds and late-night sessions.<br><br>⏰ <strong>Weekdays:</strong> 5:00 AM - 9:30 PM<br>⏰ <strong>Weekends:</strong> 6:00 AM - 1:00 PM", 'bot');
+      }
+      
+      // 4. CHANNELS FOR COACHING / WEIGHT LOSS / MUSCLE GAIN
       else if (
         lowerMsg.includes('trainer') || 
         lowerMsg.includes('weight') || 
@@ -409,10 +420,10 @@
         lowerMsg.includes('gain')
       ) {
         addMessage("Yes! We have elite, certified transformation coaches at We Fitness Center specializing in rapid fat loss, contest prep, and hyper-growth muscle building. Let's lock in your tracking parameters here:", 'bot');
-        showLeadCapture(); // Automatically drops the custom data card
+        showLeadCapture(); 
       }
       
-      // 4. FALLBACK FOR GENERAL ENGAGEMENT
+      // 5. FALLBACK FOR GENERAL ENGAGEMENT
       else {
         addMessage("Welcome to the floor! Let's get your details locked into our system so we can answer any specific scheduling or operational queries right away. Use the secure card below: 👇", 'bot');
         showLeadCapture();
