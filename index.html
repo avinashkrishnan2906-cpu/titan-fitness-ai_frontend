@@ -322,7 +322,7 @@
     wrap.scrollTop = wrap.scrollHeight;
   }
 
-  async function submitLead() {
+async function submitLead() {
     const name = document.getElementById('lead-name').value.trim();
     const phone = document.getElementById('lead-phone').value.trim();
     const goal = document.getElementById('lead-goal').value;
@@ -333,11 +333,17 @@
     }
   
     try {
-      // Points exactly to your live Vercel endpoint proxy channel or local endpoint
-      await fetch('https://titan-fitness-ai-frontend.vercel.app/save-lead', {
+      // 🚀 TARGETING YOUR LIVE VERCEL PRODUCTION REPO BACKEND
+      await fetch('https://we-fitness-ai.vercel.app/save-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, phone: phone, goal: goal, source: "we_fitness_center" })
+        body: JSON.stringify({ 
+          name: name, 
+          phone: phone, 
+          goal: goal, 
+          source: "we_fitness_center",
+          target_sheet_name: "We Fitness Club Data" // 📊 Directly targeted
+        })
       });
     } catch(err) {
       console.error("LEAD SAVE RUN FAIL:", err);
