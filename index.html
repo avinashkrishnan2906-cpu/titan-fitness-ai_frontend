@@ -333,11 +333,16 @@
     }
   
     try {
-      // Points exactly to your live Vercel endpoint proxy channel or local endpoint
+      // Direct connection path to your backend routing configuration
       await fetch('https://we-fitness-ai.vercel.app/save-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, phone: phone, goal: goal, source: "we_fitness_center" })
+        body: JSON.stringify({ 
+          name: name, 
+          phone: phone, 
+          goal: goal, 
+          source: "we_fitness_center"
+        })
       });
     } catch(err) {
       console.error("LEAD SAVE RUN FAIL:", err);
@@ -359,7 +364,7 @@
     send();
   }
 
- async function send() {
+  async function send() {
     const inp = document.getElementById('chat-input');
     const msg = inp.value.trim();
     
@@ -370,12 +375,10 @@
     msgCount++;
     showTyping();
   
-    // ── EXPANDED MOCK RECORDING FLOW BYPASS ──
     setTimeout(() => {
       hideTyping();
       const lowerMsg = msg.toLowerCase();
       
-      // 1. CHANNELS FOR PRICING / FEES / RATES
       if (
         lowerMsg.includes('package') || 
         lowerMsg.includes('fee') || 
@@ -387,8 +390,6 @@
       ) {
         addMessage("We have elite strength and conditioning packages at We Fitness Center. Our heavy iron monthly memberships start at just ₹2,499—should I drop our complete quarterly and annual transformation packages for you? 🏋️‍♂️", 'bot');
       } 
-      
-      // 2. CHANNELS FOR TRIALS / PASSES
       else if (
         lowerMsg.includes('trial') || 
         lowerMsg.includes('pass') || 
@@ -397,8 +398,6 @@
       ) {
         addMessage("Let's get it! Experience the raw training energy at We Fitness Center. We offer an exclusive 1-day free trial pass for serious local lifters. You can lock in your session right here below! 🎯", 'bot');
       }
-      
-      // 3. ADDED: CHANNELS FOR GYM TIMINGS / HOURS / OPENING
       else if (
         lowerMsg.includes('timing') || 
         lowerMsg.includes('hours') || 
@@ -408,8 +407,6 @@
       ) {
         addMessage("No excuses! The training floor at We Fitness Center is alive for early grinds and late-night sessions.<br><br>⏰ <strong>Weekdays:</strong> 5:00 AM - 9:30 PM<br>⏰ <strong>Weekends:</strong> 6:00 AM - 1:00 PM", 'bot');
       }
-      
-      // 4. CHANNELS FOR COACHING / WEIGHT LOSS / MUSCLE GAIN
       else if (
         lowerMsg.includes('trainer') || 
         lowerMsg.includes('weight') || 
@@ -422,8 +419,6 @@
         addMessage("Yes! We have elite, certified transformation coaches at We Fitness Center specializing in rapid fat loss, contest prep, and hyper-growth muscle building. Let's lock in your tracking parameters here:", 'bot');
         showLeadCapture(); 
       }
-      
-      // 5. FALLBACK FOR GENERAL ENGAGEMENT
       else {
         addMessage("Welcome to the floor! Let's get your details locked into our system so we can answer any specific scheduling or operational queries right away. Use the secure card below: 👇", 'bot');
         showLeadCapture();
