@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>We Fitness Center • AI Digital Desk</title>
+  <title>Muscle Mantra Unisex Fitness Center • AI Digital Desk</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,23 +14,22 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* COLORS EXTRACTED FROM THE LOGO */
-      --red:    #e31e24; /* 🔴 Striking Crimson Red from the logo elements */
-      --orange: #ffffff; /* ⚪ Stark Chrome White for high visibility highlights */
-      --gold:   #ff3344; /* 🎯 Bright neon-red tint for interactive glows */
+      /* COLORS EXTRACTED FROM THE MUSCLE MANTRA BANNER */
+      --primary-neon:  #adff2f; /* 🟢 High-visibility Volt Green from the background */
+      --accent-yellow: #fff200; /* 🟡 Pure Electric Yellow from the "Muscle Mantra" text */
+      --white:         #ffffff; /* ⚪ Stark white highlights */
       
-      /* DARK BACKGROUNDS: Heavy industrial charcoal to make the red pop */
-      --bg0:    #060608; 
-      --bg1:    #0d0d12; 
-      --bg2:    #14141c; 
+      /* ULTRA DARK INDUSTRIAL BACKING */
+      --bg0:    #0b0f0c; /* Heavy dark forest charcoal */
+      --bg1:    #111612; 
+      --bg2:    #18201a; /* Dark gray-green container base */
       
-      --glass:  rgba(255, 255, 255, 0.02);
-      --border: rgba(227, 30, 36, 0.15); /* Subtle Crimson border glow */
+      --glass:  rgba(173, 255, 47, 0.02);
+      --border: rgba(173, 255, 47, 0.2); /* Neon Green border aura */
       --text:   #f3f4f6;
-      --muted:  #9ca3af;
+      --muted:  #839286;
       
-      /* GRADIENT: Aggressive Crimson Red to deep volcanic shadow */
-      --grad:   linear-gradient(135deg, var(--red), #800f12); 
+      --grad:   linear-gradient(135deg, var(--primary-neon), #559900); 
     }
 
     html, body { height: 100%; overflow: hidden; }
@@ -50,8 +49,8 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(227, 30, 36, 0.15) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+        radial-gradient(ellipse 60% 50% at 20% 80%, rgba(173, 255, 47, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255, 242, 0, 0.04) 0%, transparent 70%);
       animation: breathe 8s ease-in-out infinite alternate;
     }
     @keyframes breathe {
@@ -61,8 +60,8 @@
     .grid-lines {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+        linear-gradient(rgba(173,255,47,.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(173,255,47,.015) 1px, transparent 1px);
       background-size: 40px 40px;
     }
 
@@ -72,7 +71,7 @@
       width: min(480px, 100vw);
       height: 100vh;
       display: flex; flex-direction: column;
-      background: rgba(6, 6, 8, 0.96);
+      background: rgba(11, 15, 12, 0.97);
       border-left: 1px solid var(--border);
       border-right: 1px solid var(--border);
     }
@@ -80,7 +79,7 @@
     /* ── HEADER DESIGN ── */
     .header {
       padding: 18px 22px 14px;
-      background: rgba(6, 6, 8, 0.9);
+      background: rgba(11, 15, 12, 0.95);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center; gap: 14px;
@@ -89,42 +88,42 @@
     .logo-ring {
       width: 46px; height: 46px; border-radius: 50%;
       background: var(--bg2);
-      border: 2px solid var(--red);
+      border: 2px solid var(--primary-neon);
       display: flex; align-items: center; justify-content: center;
       font-size: 20px;
-      box-shadow: 0 0 12px rgba(227, 30, 36, 0.3);
+      box-shadow: 0 0 12px rgba(173, 255, 47, 0.3);
       animation: pulse-ring 3s ease-in-out infinite;
       flex-shrink: 0;
     }
     @keyframes pulse-ring {
-      0%, 100% { box-shadow: 0 0 12px rgba(227, 30, 36, 0.3); border-color: var(--red); }
-      50% { box-shadow: 0 0 22px rgba(255, 51, 68, 0.45); border-color: var(--gold); }
+      0%, 100% { box-shadow: 0 0 12px rgba(173, 255, 47, 0.3); border-color: var(--primary-neon); }
+      50% { box-shadow: 0 0 22px rgba(255, 242, 0, 0.45); border-color: var(--accent-yellow); }
     }
     .header-text { flex: 1; }
     .header-text h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 24px; letter-spacing: 1.5px;
-      background: linear-gradient(90deg, #ffffff, #a3a3a3);
+      font-size: 25px; letter-spacing: 1.5px;
+      background: linear-gradient(90deg, var(--accent-yellow), #ffffff);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .header-text p { font-size: 11px; color: var(--red); font-weight: 600; margin-top: 1px; letter-spacing: 0.5px; }
+    .header-text p { font-size: 11px; color: var(--primary-neon); font-weight: 600; margin-top: 1px; letter-spacing: 0.5px; }
     .status-dot {
       width: 8px; height: 8px; border-radius: 50%;
-      background: var(--red);
-      box-shadow: 0 0 8px var(--red);
+      background: var(--primary-neon);
+      box-shadow: 0 0 8px var(--primary-neon);
       animation: blink 2s ease-in-out infinite;
     }
     @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
 
     /* ── MARQUEE ── */
     .promo-banner {
-      background: linear-gradient(90deg, rgba(227,30,36,0.12), rgba(0,0,0,0.4));
+      background: linear-gradient(90deg, rgba(173,255,47,0.12), rgba(0,0,0,0.4));
       border-bottom: 1px solid var(--border);
       padding: 8px 18px; font-size: 11px; font-weight: 600; color: #ffffff;
       display: flex; align-items: center; gap: 8px; overflow: hidden; flex-shrink: 0;
     }
     .promo-banner span.tag {
-      background: var(--grad); color: #fff; font-size: 9px; font-weight: 700;
+      background: var(--grad); color: #0b0f0c; font-size: 9px; font-weight: 800;
       padding: 2px 6px; border-radius: 4px; letter-spacing: .5px;
     }
     .promo-scroll { overflow: hidden; white-space: nowrap; flex: 1; }
@@ -139,7 +138,7 @@
       border: 1px solid var(--border); background: var(--glass);
       font-size: 12px; color: var(--muted); cursor: pointer; transition: all .2s; backdrop-filter: blur(8px);
     }
-    .chip:hover { border-color: var(--red); color: #fff; background: rgba(227,30,36,0.08); }
+    .chip:hover { border-color: var(--primary-neon); color: #fff; background: rgba(173,255,47,0.08); }
 
     /* ── TALK DISPLAY SECTION ── */
     #messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; }
@@ -148,60 +147,69 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .msg-row.user { flex-direction: row-reverse; }
     
-    .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-size: 13px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
-    .msg-row.user .avatar { background: var(--bg2); border: 1px solid var(--border); }
+    .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--grad); color: #0b0f0c; display: flex; align-items: center; justify-content: center; font-size: 13px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
+    .msg-row.user .avatar { background: var(--bg2); color: #fff; border: 1px solid var(--border); }
     
     .bubble { max-width: 80%; padding: 11px 15px; border-radius: 16px; font-size: 13.5px; line-height: 1.5; }
-    .bot .bubble { background: var(--bg2); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
-    .user .bubble { background: var(--grad); border-bottom-right-radius: 4px; box-shadow: 0 4px 15px rgba(227,30,36,0.2); }
+    
+    /* 🟢 HIGH VISIBILITY GREEN BOT BUBBLE WITH DARK TEXT */
+    .bot .bubble { 
+      background: var(--primary-neon); 
+      color: #0b0f0c; 
+      border: 1px solid var(--primary-neon); 
+      border-bottom-left-radius: 4px;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(173, 255, 47, 0.15);
+    }
+    .user .bubble { background: var(--bg2); color: #ffffff; border: 1px solid var(--border); border-bottom-right-radius: 4px; }
 
     /* ── SYSTEM TYPING FEEDBACK ── */
     .typing-row { display: flex; gap: 8px; align-items: flex-end; padding: 4px; }
-    .typing-bubble { background: var(--bg2); border: 1px solid var(--border); padding: 12px 16px; border-radius: 16px; border-bottom-left-radius: 4px; display: flex; gap: 5px; align-items: center; }
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: bounce 1.2s ease-in-out infinite; }
+    .typing-bubble { background: var(--primary-neon); border: 1px solid var(--primary-neon); padding: 12px 16px; border-radius: 16px; border-bottom-left-radius: 4px; display: flex; gap: 5px; align-items: center; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #0b0f0c; animation: bounce 1.2s ease-in-out infinite; }
     .dot:nth-child(2) { animation-delay: .2s; }
     .dot:nth-child(3) { animation-delay: .4s; }
     @keyframes bounce { 0%,80%,100% { transform: translateY(0); opacity: .4; } 40% { transform: translateY(-5px); opacity: 1; } }
 
     /* ── DATA CAPTURE FORM CARD ── */
     .lead-card {
-      background: linear-gradient(135deg, rgba(227,30,36,0.1), rgba(0,0,0,0.5));
-      border: 1px solid rgba(227, 30, 36, 0.35); border-radius: 16px; padding: 18px; animation: fadeUp .4s ease both;
+      background: linear-gradient(135deg, rgba(173,255,47,0.1), rgba(0,0,0,0.6));
+      border: 1px solid rgba(173, 255, 47, 0.35); border-radius: 16px; padding: 18px; animation: fadeUp .4s ease both;
     }
     .lead-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 21px; letter-spacing: 1px; color: #ffffff; margin-bottom: 4px; }
-    .lead-card p { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+    .lead-card p { font-size: 12px; color: var(--text); margin-bottom: 14px; }
     .lead-inputs { display: flex; flex-direction: column; gap: 10px; }
     .lead-input {
       background: rgba(0,0,0,0.5); border: 1px solid var(--border); border-radius: 10px;
       padding: 11px 14px; color: #fff; font-size: 13px; font-family: 'DM Sans', sans-serif; outline: none; transition: all .2s;
     }
-    select.lead-input option { background: #0c0c12; color: #fff; }
-    .lead-input:focus { border-color: var(--red); box-shadow: 0 0 8px rgba(227,30,36,0.2); }
+    select.lead-input option { background: #0b0f0c; color: #fff; }
+    .lead-input:focus { border-color: var(--primary-neon); box-shadow: 0 0 8px rgba(173,255,47,0.2); }
     .lead-btn {
       padding: 12px; border-radius: 10px; border: none; background: var(--grad);
-      color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif;
-      transition: all .2s; box-shadow: 0 4px 15px rgba(227,30,36,0.3);
+      color: #0b0f0c; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      transition: all .2s; box-shadow: 0 4px 15px rgba(173,255,47,0.3);
     }
     .lead-btn:hover { opacity: .95; transform: translateY(-1px); }
 
     /* ── BASE CONSOLE ── */
-    .input-area { padding: 14px 14px 18px; background: rgba(6,6,8,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--border); flex-shrink: 0; }
+    .input-area { padding: 14px 14px 18px; background: rgba(11,15,12,0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--border); flex-shrink: 0; }
     .input-row { display: flex; gap: 10px; align-items: center; }
     #chat-input {
       flex: 1; background: var(--bg2); border: 1px solid var(--border); border-radius: 24px;
       padding: 12px 18px; color: #fff; font-size: 13.5px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .25s;
     }
-    #chat-input:focus { border-color: rgba(227,30,36,0.4); }
+    #chat-input:focus { border-color: rgba(173,255,47,0.4); }
     .send-btn {
       width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0; background: var(--grad);
       border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 15px rgba(227,30,36,0.25); transition: all .15s;
+      box-shadow: 0 0 15px rgba(173,255,47,0.25); transition: all .15s;
     }
-    .send-btn:hover { transform: scale(1.05); box-shadow: 0 0 22px rgba(227,30,36,0.45); }
-    .send-btn svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .send-btn:hover { transform: scale(1.05); box-shadow: 0 0 22px rgba(173,255,47,0.45); }
+    .send-btn svg { width: 18px; height: 18px; fill: none; stroke: #0b0f0c; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
     
     .footer-note { text-align: center; font-size: 10px; color: var(--muted); margin-top: 10px; line-height: 1.4; }
-    .footer-note span { color: var(--red); font-weight: 600; }
+    .footer-note span { color: var(--primary-neon); font-weight: 600; }
   </style>
 </head>
 <body>
@@ -210,20 +218,20 @@
 
 <div class="shell">
   <div class="header">
-    <div class="logo-ring">💪</div>
+    <div class="logo-ring">⚡</div>
     <div class="header-text">
-      <h1>WE FITNESS CENTER</h1>
+      <h1>MUSCLE MANTRA FITNESS</h1>
       <p>AI Virtual Front Desk • 24/7 Digital Assistant</p>
     </div>
     <div class="status-dot"></div>
   </div>
 
   <div class="promo-banner">
-    <span class="tag">🔥 FREE PASS</span>
+    <span class="tag">🔥 FREE TRIAL</span>
     <div class="promo-scroll">
       <span class="promo-scroll-inner">
-        ⚡ ACTIVATE YOUR FREE WE FITNESS TRIAL PASS • CRUSH YOUR GOALS • HEAVY IRON ONLY &nbsp;&nbsp;&nbsp;&nbsp;
-        ⚡ ACTIVATE YOUR FREE WE FITNESS TRIAL PASS • CRUSH YOUR GOALS • HEAVY IRON ONLY &nbsp;&nbsp;&nbsp;&nbsp;
+        ⚡ ACTIVATE YOUR FREE TRIAL PASS • CARDIO • STRENGTH TRAINING • BODYBUILDING • DEFENSE COCHING &nbsp;&nbsp;&nbsp;&nbsp;
+        ⚡ ACTIVATE YOUR FREE TRIAL PASS • CARDIO • STRENGTH TRAINING • BODYBUILDING • DEFENSE COCHING &nbsp;&nbsp;&nbsp;&nbsp;
       </span>
     </div>
   </div>
@@ -231,23 +239,22 @@
   <div class="chips-bar" id="chips">
     <div class="chip" onclick="quickSend(this)">💰 Membership Fees</div>
     <div class="chip" onclick="quickSend(this)">🎯 Free Trial Pass</div>
+    <div class="chip" onclick="quickSend(this)">🪖 Defense & Police Prep</div>
     <div class="chip" onclick="quickSend(this)">⏰ Gym Timings</div>
-    <div class="chip" onclick="quickSend(this)">💪 Personal Training</div>
     <div class="chip" onclick="quickSend(this)">📍 Location</div>
-    <div class="chip" onclick="quickSend(this)">🚗 Parking Slots</div>
   </div>
 
   <div id="messages"></div>
 
   <div class="input-area">
     <div class="input-row">
-      <input type="text" id="chat-input" placeholder="Ask about memberships, timings, trainers..." autocomplete="off" />
+      <input type="text" id="chat-input" placeholder="Ask about memberships, defense tracks, packages..." autocomplete="off" />
       <button class="send-btn" onclick="send()" aria-label="Send">
         <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </div>
     <div class="footer-note">
-      Engine Configuration Managed by <span>We Fitness Systems</span>
+      Engine Configuration Managed by <span>Muscle Mantra Systems</span>
       <br>
       ⚡ Secure Verification Channel Linked • Instant Execution
     </div>
@@ -304,16 +311,16 @@
     card.className = 'lead-card';
     card.innerHTML = `
       <h3>🏋️‍♂️ SECURE YOUR COMPLIMENTARY TRIAL PASS</h3>
-      <p>Drop your contact details below. Our training team will confirm your entry slot instantly!</p>
+      <p>Drop your contact details below. Our transformation team will confirm your entry slot instantly!</p>
       <div class="lead-inputs">
         <input class="lead-input" id="lead-name" type="text" placeholder="Your Full Name" />
         <input class="lead-input" id="lead-phone" type="tel" placeholder="Mobile Number" />
         <select class="lead-input" id="lead-goal">
-            <option value="">Choose Transformation Track</option>
-            <option value="Weight Loss / Shred">Weight Loss / Shred</option>
-            <option value="Muscle Gain / Strength">Muscle Gain / Strength</option>
-            <option value="Bodybuilding Prep">Bodybuilding & Contest Prep</option>
-            <option value="Personal Coaching">1-on-1 Personal Training</option>
+            <option value="">Choose Specialization Track</option>
+            <option value="Weight Loss / Shred">Weight Loss & Transformation</option>
+            <option value="Muscle Gain / Strength">Body Building & Strength</option>
+            <option value="Police / Army / Navy Prep">Police / Army / Navy Fitness</option>
+            <option value="Posture Correction">Posture & Kids Fitness</option>
         </select>
         <button class="lead-btn" onclick="submitLead()">Claim My Free Pass Now →</button>
       </div>
@@ -323,41 +330,41 @@
   }
 
   async function submitLead() {
-  const name = document.getElementById('lead-name').value.trim();
-  const phone = document.getElementById('lead-phone').value.trim();
-  const goal = document.getElementById('lead-goal').value;
+    const name = document.getElementById('lead-name').value.trim();
+    const phone = document.getElementById('lead-phone').value.trim();
+    const goal = document.getElementById('lead-goal').value;
 
-  if (!name || !phone || !goal) {
-    alert('Fill out your details to activate your pass! 💪🔥');
-    return;
+    if (!name || !phone || !goal) {
+      alert('Fill out your details to activate your pass! 💪🔥');
+      return;
+    }
+
+    try {
+      // 🎯 Target parameters specifically isolated for Muscle Mantra
+      await fetch('https://titan-fitness-ai.vercel.app/save-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          name: name, 
+          phone: phone, 
+          goal: goal, 
+          source: "muscle_mantra",
+          target_sheet: "Muscle Mantra Leads" 
+        })
+      });
+    } catch(err) {
+      console.error("LEAD SAVE RUN FAIL:", err);
+    }
+
+    const card = document.querySelector('.lead-card');
+    card.innerHTML = `
+      <h3>🎉 PASS ACTIVATED, ${name.toUpperCase()}!</h3>
+      <p>Selected Track: <strong>${goal}</strong></p>
+      <p>The Muscle Mantra floor manager will call you at <strong>${phone}</strong> within 30 minutes to confirm your slot.</p>
+      <p style="margin-top:10px; color:var(--bg0); font-weight:700; letter-spacing:0.5px;">WELCOME TO THE TEAM. 🔥👊</p>
+    `;
+    document.getElementById('messages').scrollTop = 9999;
   }
-
-  try {
-    // Direct connection path to your backend routing configuration
-    await fetch('https://titan-fitness-ai.vercel.app/save-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ 
-        name: name, 
-        phone: phone, 
-        goal: goal, 
-        source: "we_fitness_center",
-        target_sheet: "We Fitness Club Data" // 🎯 DYNAMIC KEY: Tells the backend exactly which sheet to open!
-      })
-    });
-  } catch(err) {
-    console.error("LEAD SAVE RUN FAIL:", err);
-  }
-
-  const card = document.querySelector('.lead-card');
-  card.innerHTML = `
-    <h3>🎉 PASS ACTIVATED, ${name.toUpperCase()}!</h3>
-    <p>Selected Track: <strong>${goal}</strong></p>
-    <p>Our training floor desk will call you at <strong>${phone}</strong> within 30 minutes to confirm your slot.</p>
-    <p style="margin-top:10px; color:var(--red); font-weight:600; letter-spacing:0.5px;">WELCOME TO THE IRON ZONE. 🔥👊</p>
-  `;
-  document.getElementById('messages').scrollTop = 9999;
-}
 
   function quickSend(el) {
     const text = el.textContent.replace(/^[^\w]+/, '').trim();
@@ -389,7 +396,7 @@
         lowerMsg.includes('cost') ||
         lowerMsg.includes('membership')
       ) {
-        addMessage("We have elite strength and conditioning packages at We Fitness Center. Our heavy iron monthly memberships start at just ₹2,499—should I drop our complete quarterly and annual transformation packages for you? 🏋️‍♂️", 'bot');
+        addMessage("We have elite packages here at Muscle Mantra Unisex Fitness Center! General gym access starts at budget-friendly rates. Should I drop our full structural breakdown for cardio, bodybuilding, or transformation tiers? 🏋️‍♂️", 'bot');
       } 
       else if (
         lowerMsg.includes('trial') || 
@@ -397,7 +404,7 @@
         lowerMsg.includes('free') || 
         lowerMsg.includes('check out')
       ) {
-        addMessage("Let's get it! Experience the raw training energy at We Fitness Center. We offer an exclusive 1-day free trial pass for serious local lifters. You can lock in your session right here below! 🎯", 'bot');
+        addMessage("Let's crush it! Experience the intense environment of Muscle Mantra. We offer an exclusive free trial pass for serious lifters. Fill out your details below to lock it in! 🎯", 'bot');
       }
       else if (
         lowerMsg.includes('timing') || 
@@ -406,7 +413,20 @@
         lowerMsg.includes('close') || 
         lowerMsg.includes('time')
       ) {
-        addMessage("No excuses! The training floor at We Fitness Center is alive for early grinds and late-night sessions.<br><br>⏰ <strong>Weekdays:</strong> 5:00 AM - 9:30 PM<br>⏰ <strong>Weekends:</strong> 6:00 AM - 1:00 PM", 'bot');
+        addMessage("No excuses! Muscle Mantra is operational for early morning grinds and late-night sessions.<br><br>⏰ <strong>Monday to Saturday:</strong> 5:00 AM - 10:00 PM<br>⏰ <strong>Sundays:</strong> Special morning slots only.", 'bot');
+      }
+      else if (
+        lowerMsg.includes('army') || 
+        lowerMsg.includes('police') || 
+        lowerMsg.includes('navy') || 
+        lowerMsg.includes('defense') || 
+        lowerMsg.includes('prep') || 
+        lowerMsg.includes('marathon') ||
+        lowerMsg.includes('kids') ||
+        lowerMsg.includes('posture')
+      ) {
+        addMessage("Yes! We are highly specialized in Physical Fitness Training for Police, Army, and Navy selection exams, alongside marathon prep, posture correction, and kids fitness. Let's get your training track mapped out immediately below: 🪖🎖️", 'bot');
+        showLeadCapture(); 
       }
       else if (
         lowerMsg.includes('trainer') || 
@@ -417,11 +437,11 @@
         lowerMsg.includes('fat') || 
         lowerMsg.includes('gain')
       ) {
-        addMessage("Yes! We have elite, certified transformation coaches at We Fitness Center specializing in rapid fat loss, contest prep, and hyper-growth muscle building. Let's lock in your tracking parameters here:", 'bot');
+        addMessage("Absolutely! Our certified coaches specialize in rapid fat loss, mass building, physique transformations, and contest prep. Drop your goals here to line up a chat with a coach:", 'bot');
         showLeadCapture(); 
       }
       else {
-        addMessage("Welcome to the floor! Let's get your details locked into our system so we can answer any specific scheduling or operational queries right away. Use the secure card below: 👇", 'bot');
+        addMessage("Welcome to Muscle Mantra! Let's get your information registered so our floor team can help you with packages or scheduling questions. Use the card below: 👇", 'bot');
         showLeadCapture();
       }
     }, 1000); 
@@ -432,9 +452,9 @@
   window.onload = () => {
     setTimeout(() => {
       addMessage(
-        "🔥 Welcome to We Fitness Center! 👋💪<br>" +
-        "Ready to build elite strength? I am your 24/7 digital front desk assistant.<br><br>" +
-        "Ask me anything about our <strong>membership structures, personal training, timings</strong>, or claim your <strong>FREE TRIAL PASS</strong> right here! 👇",
+        "🔥 Welcome to Muscle Mantra Unisex Fitness Center! 👋💪<br>" +
+        "Ready to transform your physique? I am your 24/7 digital front desk concierge.<br><br>" +
+        "Ask me about our <strong>Membership Fees, Gym Timings, or our highly specialized Army / Police selection training tracks</strong>! Claim your <strong>FREE PASS</strong> right here: 👇",
         'bot'
       );
     }, 300);
