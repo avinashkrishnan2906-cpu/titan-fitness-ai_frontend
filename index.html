@@ -378,75 +378,49 @@
     
     if (!msg) return;
     
+    // 1. Instantly display user input on the UI row
     addMessage(msg, 'user');
     inp.value = '';
     msgCount++;
+    
+    // 2. Launch the neon typing dots indicator
     showTyping();
   
-    setTimeout(() => {
-      hideTyping();
-      const lowerMsg = msg.toLowerCase();
+    try {
+      // 3. Connect the live pipeline channel to your deployed FastAPI backend
+      const response = await fetch('https://titan-fitness-ai.vercel.app/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
       
-      if (
-        lowerMsg.includes('package') || 
-        lowerMsg.includes('fee') || 
-        lowerMsg.includes('much') || 
-        lowerMsg.includes('rate') || 
-        lowerMsg.includes('price') || 
-        lowerMsg.includes('cost') ||
-        lowerMsg.includes('membership')
-      ) {
-        addMessage("We have elite packages here at Muscle Mantra Unisex Fitness Center! General gym access starts at budget-friendly rates. Should I drop our full structural breakdown for cardio, bodybuilding, or transformation tiers? 🏋️‍♂️", 'bot');
-      } 
-      else if (
-        lowerMsg.includes('trial') || 
-        lowerMsg.includes('pass') || 
-        lowerMsg.includes('free') || 
-        lowerMsg.includes('check out')
-      ) {
-        addMessage("Let's crush it! Experience the intense environment of Muscle Mantra. We offer an exclusive free trial pass for serious lifters. Fill out your details below to lock it in! 🎯", 'bot');
+      const data = await response.json();
+      hideTyping();
+      
+      // 4. Display the real-time AI response generated via SambaNova DeepSeek
+      if (data && data.response) {
+        addMessage(data.response, 'bot');
+      } else {
+        addMessage("Welcome to the floor! Let's get your details locked into our system so we can answer any specific scheduling or operational queries right away. Use the secure card below: 👇", 'bot');
       }
-      else if (
-        lowerMsg.includes('timing') || 
-        lowerMsg.includes('hours') || 
-        lowerMsg.includes('open') || 
-        lowerMsg.includes('close') || 
-        lowerMsg.includes('time')
-      ) {
-        addMessage("No excuses! Muscle Mantra is operational for early morning grinds and late-night sessions.<br><br>⏰ <strong>Monday to Saturday:</strong> 5:00 AM - 10:00 PM<br>⏰ <strong>Sundays:</strong> Special morning slots only.", 'bot');
-      }
-      else if (
-        lowerMsg.includes('army') || 
-        lowerMsg.includes('police') || 
-        lowerMsg.includes('navy') || 
-        lowerMsg.includes('defense') || 
-        lowerMsg.includes('prep') || 
-        lowerMsg.includes('marathon') ||
-        lowerMsg.includes('kids') ||
-        lowerMsg.includes('posture')
-      ) {
-        addMessage("Yes! We are highly specialized in Physical Fitness Training for Police, Army, and Navy selection exams, alongside marathon prep, posture correction, and kids fitness. Let's get your training track mapped out immediately below: 🪖🎖️", 'bot');
-        showLeadCapture(); 
-      }
-      else if (
-        lowerMsg.includes('trainer') || 
-        lowerMsg.includes('weight') || 
-        lowerMsg.includes('coaching') || 
-        lowerMsg.includes('personal') || 
-        lowerMsg.includes('reduce') || 
-        lowerMsg.includes('fat') || 
-        lowerMsg.includes('gain')
-      ) {
-        addMessage("Absolutely! Our certified coaches specialize in rapid fat loss, mass building, physique transformations, and contest prep. Drop your goals here to line up a chat with a coach:", 'bot');
-        showLeadCapture(); 
-      }
-      else {
-        addMessage("Welcome to Muscle Mantra! Let's get your information registered so our floor team can help you with packages or scheduling questions. Use the card below: 👇", 'bot');
+    } catch(err) {
+      console.error("❌ AI NETWORK COUPLING FAILED:", err);
+      hideTyping();
+      addMessage("Welcome to the floor! Let's get your details locked into our system so we can answer any specific scheduling or operational queries right away. Use the secure card below: 👇", 'bot');
+    }
+
+    // 5. INTENT CONVERSION GAUNTLET: Automatically display lead card after message exchange
+    const lowerMsg = msg.toLowerCase();
+    const intentTriggers = ['package', 'fee', 'much', 'rate', 'price', 'cost', 'membership', 'trial', 'pass', 'free', 'coach', 'personal', 'army', 'police', 'navy', 'prep'];
+    
+    const matchedIntent = intentTriggers.some(trigger => lowerMsg.includes(trigger));
+    
+    if (matchedIntent || msgCount >= 2) {
+      setTimeout(() => {
         showLeadCapture();
-      }
-    }, 1000); 
+      }, 800);
+    }
   }
-  
   document.getElementById('chat-input').addEventListener('keypress', e => { if (e.key === 'Enter') send(); });
 
   window.onload = () => {
