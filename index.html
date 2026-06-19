@@ -392,62 +392,229 @@
     return "Welcome to RXtreme Fitness! Let's get your profile registered on our local mainframe so our tracking and coaching team can map out your structural packages. Claim your entry pass below: 👇";
   }
 
-  async function send() {
+ async function send() {
     const inp = document.getElementById('chat-input');
     const msg = inp.value.trim();
-    
+
     if (!msg) return;
-    
+
     addMessage(msg, 'user');
     inp.value = '';
+
     msgCount++;
     showTyping();
-  
-    try {
-      // 📡 LIVE NETWORK STREAM CHANNEL
-      const response = await fetch('https://titan-fitness-ai.vercel.app/chat', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+
+    const lowerMsg = msg.toLowerCase();
+
+    // ==========================
+    // CUSTOM RESPONSES
+    // ==========================
+    const customResponses = [
+        {
+            keywords: ["hi", "hello", "hey"],
+            response: `
+                👋 Welcome to RXtreme Fitness!
+                <br><br>
+                I'm your AI Front Desk Assistant.
+                Ask me about:
+                <br>💰 Membership Fees
+                <br>⏰ Gym Timings
+                <br>💪 Personal Training
+                <br>🎯 Free Trial Pass
+            `
         },
-        body: JSON.stringify({ message: msg })
-      });
-      
-      if (!response.ok) {
-        throw new Error(`Fallback Triggered (Status Code: ${response.status})`);
-      }
-      
-      const data = await response.json();
-      hideTyping();
-      
-      if (data && data.response) {
-        addMessage(data.response, 'bot');
-      } else {
-        // Fallback inside successful network response if return key format mismatches
-        addMessage(getLocalResponse(msg), 'bot');
-      }
-    } catch(err) {
-      // 🛡️ DUAL-ENGINE INTERCEPT: Executes instantly if the cloud api drops out entirely
-      console.warn("📡 Cloud bridge route interrupted. Swapping safely to Local Hybrid Database Engine.", err);
-      setTimeout(() => {
+
+        {
+            keywords: ["membership", "fees", "fee", "price", "cost", "package", "packages"],
+            response: `
+                💰 RXtreme Membership Packages
+                <br><br>
+                🥉 Basic Plan - ₹999/month
+                <br>
+                🥈 Premium Plan - ₹1499/month
+                <br>
+                🥇 Elite Plan - ₹2499/month
+                <br><br>
+                🎯 Join today and get exclusive offers!
+            `
+        },
+
+        {
+            keywords: ["trial", "free pass", "free trial"],
+            response: `
+                🎯 FREE TRIAL PASS AVAILABLE!
+                <br><br>
+                Experience RXtreme Fitness for FREE.
+                <br>
+                Fill the form below and our team will activate your pass.
+            `
+        },
+
+        {
+            keywords: ["timing", "timings", "time", "open", "close", "hours"],
+            response: `
+                ⏰ RXtreme Fitness Timings
+                <br><br>
+                Monday - Saturday
+                <br>
+                5:00 AM - 11:00 PM
+                <br><br>
+                Sunday
+                <br>
+                6:00 AM - 8:00 PM
+            `
+        },
+
+        {
+            keywords: ["trainer", "coach", "training", "personal training"],
+            response: `
+                💪 Personal Training Available
+                <br><br>
+                ✔ Weight Loss
+                <br>
+                ✔ Fat Loss
+                <br>
+                ✔ Muscle Gain
+                <br>
+                ✔ Strength Training
+                <br>
+                ✔ Contest Preparation
+            `
+        },
+
+        {
+            keywords: ["location", "address", "where", "map"],
+            response: `
+                📍 RXtreme Fitness
+                <br><br>
+                Near XYZ Junction
+                <br>
+                Chennai, Tamil Nadu
+                <br><br>
+                Contact: +91 9876543210
+            `
+        },
+
+        {
+            keywords: ["weight loss", "fat loss", "reduce weight"],
+            response: `
+                🔥 Weight Loss Program
+                <br><br>
+                Our trainers will create:
+                <br>
+                ✔ Workout Plan
+                <br>
+                ✔ Nutrition Guidance
+                <br>
+                ✔ Weekly Tracking
+                <br><br>
+                Ask for a FREE trial today!
+            `
+        },
+
+        {
+            keywords: ["muscle gain", "bulk", "bodybuilding"],
+            response: `
+                💪 Muscle Gain Program
+                <br><br>
+                Build strength and muscle with:
+                <br>
+                ✔ Customized Workout Plans
+                <br>
+                ✔ Progressive Overload Training
+                <br>
+                ✔ Diet Guidance
+            `
+        }
+    ];
+
+    // ==========================
+    // CHECK CUSTOM RESPONSES
+    // ==========================
+    const matchedResponse = customResponses.find(item =>
+        item.keywords.some(keyword => lowerMsg.includes(keyword))
+    );
+
+    if (matchedResponse) {
         hideTyping();
-        addMessage(getLocalResponse(msg), 'bot');
-      }, 400);
+
+        setTimeout(() => {
+            addMessage(matchedResponse.response, 'bot');
+
+            if (
+                lowerMsg.includes('membership') ||
+                lowerMsg.includes('fee') ||
+                lowerMsg.includes('trial') ||
+                lowerMsg.includes('trainer') ||
+                lowerMsg.includes('coach') ||
+                lowerMsg.includes('weight loss') ||
+                lowerMsg.includes('muscle gain')
+            ) {
+                setTimeout(() => {
+                    showLeadCapture();
+                }, 800);
+            }
+        }, 500);
+
+        return;
     }
 
-    // ⚡ INTENT CARD INTAKE CONVERSION SWITCH
-    const lowerMsg = msg.toLowerCase();
-    const intentTriggers = ['package', 'fee', 'much', 'rate', 'price', 'cost', 'membership', 'trial', 'pass', 'free', 'coach', 'personal', 'reduce', 'fat', 'gain', 'shred', 'timing', 'hours', 'open', 'location', 'where'];
-    
-    const matchedIntent = intentTriggers.some(trigger => lowerMsg.includes(trigger));
-    
-    if (matchedIntent || msgCount >= 2) {
-      setTimeout(() => {
+    // ==========================
+    // FALLBACK TO AI API
+    // ==========================
+    try {
+
+        const response = await fetch(
+            'https://titan-fitness-ai.vercel.app/chat',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: msg
+                })
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        hideTyping();
+
+        if (data.response) {
+            addMessage(data.response, 'bot');
+        } else if (data.msg) {
+            addMessage(data.msg, 'bot');
+        } else {
+            addMessage(
+                "🏋️ Thanks for reaching out! Our RXtreme team will assist you shortly.",
+                'bot'
+            );
+        }
+
+    } catch (err) {
+
+        console.error("API ERROR:", err);
+
+        hideTyping();
+
+        addMessage(
+            `
+            ⚠️ Our AI assistant is currently unavailable.
+            <br><br>
+            Please leave your details below and our team will contact you shortly.
+            `,
+            'bot'
+        );
+
         showLeadCapture();
-      }, 800);
     }
-  }
+}
   
   document.getElementById('chat-input').addEventListener('keypress', e => { if (e.key === 'Enter') send(); });
 
