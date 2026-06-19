@@ -340,7 +340,6 @@
     }
 
     try {
-      // 🎯 Target parameters specifically isolated for RXtreme Fitness
       await fetch('https://titan-fitness-ai.vercel.app/save-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -372,6 +371,27 @@
     send();
   }
 
+  // 🎯 KEYWORD DATABASE ARCHITECTURE FOR INSTANT LOCAL MATCHING IF CLOUD FAILS
+  function getLocalResponse(msg) {
+    const clean = msg.toLowerCase();
+    if (clean.includes('package') || clean.includes('fee') || clean.includes('much') || clean.includes('rate') || clean.includes('price') || clean.includes('cost') || clean.includes('membership')) {
+      return "We have elite commercial packages here at RXtreme Fitness! Access plans are tailored for general conditioning, bodybuilding, or aesthetic shreds. Secure your free walkthrough pass below to lock in the absolute lowest registration rates! 💰⚡";
+    }
+    if (clean.includes('trial') || clean.includes('pass') || clean.includes('free') || clean.includes('check out')) {
+      return "Let's build a monster physique! Experience the absolute high-intensity iron environment of RXtreme Fitness. Claim your exclusive complimentary day trial pass on the secure registry pass card below! 🎯";
+    }
+    if (clean.includes('timing') || clean.includes('hours') || clean.includes('open') || clean.includes('close') || clean.includes('time')) {
+      return "No excuses on the floor! RXtreme is operational for early morning grinds and high-volume evening blast sessions:<br><br>⏰ <strong>Monday to Saturday:</strong> 5:00 AM - 10:00 PM<br>⏰ <strong>Sundays:</strong> 6:00 AM - 12:00 PM Special Tracks.";
+    }
+    if (clean.includes('trainer') || clean.includes('coaching') || clean.includes('personal') || clean.includes('pt')) {
+      return "Absolutely! Our certified elite floor coaches specialize in rapid fat annihilation, muscle mass assembly, and contest prep tracking. Register your name below to trigger an immediate one-on-one discovery consult! 🏋️‍♂️💪";
+    }
+    if (clean.includes('location') || clean.includes('where') || clean.includes('place') || clean.includes('address')) {
+      return "Our premium high-iron facility is located right here in Coimbatore! Fill out the information module lower down to receive the instant location pin and booking schedules instantly via mobile. 📍🌐";
+    }
+    return "Welcome to RXtreme Fitness! Let's get your profile registered on our local mainframe so our tracking and coaching team can map out your structural packages. Claim your entry pass below: 👇";
+  }
+
   async function send() {
     const inp = document.getElementById('chat-input');
     const msg = inp.value.trim();
@@ -384,7 +404,7 @@
     showTyping();
   
     try {
-      // 📡 TARGET ENDPOINT PIPELINE
+      // 📡 LIVE NETWORK STREAM CHANNEL
       const response = await fetch('https://titan-fitness-ai.vercel.app/chat', {
         method: 'POST',
         headers: { 
@@ -394,32 +414,31 @@
         body: JSON.stringify({ message: msg })
       });
       
-      // Check if server returned a bad status code (like 404, 500, etc.)
       if (!response.ok) {
-        throw new Error(`Server returned status code: ${response.status}`);
+        throw new Error(`Fallback Triggered (Status Code: ${response.status})`);
       }
       
       const data = await response.json();
       hideTyping();
       
-      // Ensure the key parsing accurately matches the FastAPI return object
       if (data && data.response) {
         addMessage(data.response, 'bot');
-      } else if (data && data.msg) {
-        addMessage(data.msg, 'bot');
       } else {
-        addMessage("Welcome to RXtreme Fitness! I received your stream, but let's lock your parameters directly into our system setup panel right below. 👇", 'bot');
+        // Fallback inside successful network response if return key format mismatches
+        addMessage(getLocalResponse(msg), 'bot');
       }
     } catch(err) {
-      // 🚨 CRITICAL: This will print the EXACT reason it fails right into your inspect panel
-      console.error("❌ FRONTEND TO BACKEND LINK BROKEN:", err);
-      hideTyping();
-      addMessage(`Welcome to RXtreme Fitness! Connection pathway is processing. Let's get your parameters registered on our system board below: 👇`, 'bot');
+      // 🛡️ DUAL-ENGINE INTERCEPT: Executes instantly if the cloud api drops out entirely
+      console.warn("📡 Cloud bridge route interrupted. Swapping safely to Local Hybrid Database Engine.", err);
+      setTimeout(() => {
+        hideTyping();
+        addMessage(getLocalResponse(msg), 'bot');
+      }, 400);
     }
 
-    // ⚡ INTENT DETECTION AUTOMATION
+    // ⚡ INTENT CARD INTAKE CONVERSION SWITCH
     const lowerMsg = msg.toLowerCase();
-    const intentTriggers = ['package', 'fee', 'much', 'rate', 'price', 'cost', 'membership', 'trial', 'pass', 'free', 'coach', 'personal', 'reduce', 'fat', 'gain', 'shred'];
+    const intentTriggers = ['package', 'fee', 'much', 'rate', 'price', 'cost', 'membership', 'trial', 'pass', 'free', 'coach', 'personal', 'reduce', 'fat', 'gain', 'shred', 'timing', 'hours', 'open', 'location', 'where'];
     
     const matchedIntent = intentTriggers.some(trigger => lowerMsg.includes(trigger));
     
