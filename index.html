@@ -384,28 +384,40 @@
     showTyping();
   
     try {
-      // 📡 LIVE NETWORK PIPELINE: Forwards data streams directly to your Vercel cloud architecture
+      // 📡 TARGET ENDPOINT PIPELINE
       const response = await fetch('https://titan-fitness-ai.vercel.app/chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({ message: msg })
       });
+      
+      // Check if server returned a bad status code (like 404, 500, etc.)
+      if (!response.ok) {
+        throw new Error(`Server returned status code: ${response.status}`);
+      }
       
       const data = await response.json();
       hideTyping();
       
+      // Ensure the key parsing accurately matches the FastAPI return object
       if (data && data.response) {
         addMessage(data.response, 'bot');
+      } else if (data && data.msg) {
+        addMessage(data.msg, 'bot');
       } else {
-        addMessage("Welcome to RXtreme Fitness! Let's get your parameters captured below so we can organize your scheduling and membership data instantly. 👇", 'bot');
+        addMessage("Welcome to RXtreme Fitness! I received your stream, but let's lock your parameters directly into our system setup panel right below. 👇", 'bot');
       }
     } catch(err) {
-      console.error("❌ CLOUD PIPELINE INTERRUPTED:", err);
+      // 🚨 CRITICAL: This will print the EXACT reason it fails right into your inspect panel
+      console.error("❌ FRONTEND TO BACKEND LINK BROKEN:", err);
       hideTyping();
-      addMessage("Welcome to RXtreme Fitness! Let's get your parameters captured below so we can organize your scheduling and membership data instantly. 👇", 'bot');
+      addMessage(`Welcome to RXtreme Fitness! Connection pathway is processing. Let's get your parameters registered on our system board below: 👇`, 'bot');
     }
 
-    // ⚡ INTENT DETECTION AUTOMATION: Automatically pops up the lead intake panel based on conversation context
+    // ⚡ INTENT DETECTION AUTOMATION
     const lowerMsg = msg.toLowerCase();
     const intentTriggers = ['package', 'fee', 'much', 'rate', 'price', 'cost', 'membership', 'trial', 'pass', 'free', 'coach', 'personal', 'reduce', 'fat', 'gain', 'shred'];
     
